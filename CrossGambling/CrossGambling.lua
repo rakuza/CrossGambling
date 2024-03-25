@@ -475,9 +475,9 @@ function CrossGambling:CloseGame()
             for i = 1, #self.game.result.losers do
                 local RollNotification = ""
                 if (self.game.house == false) then
-                    RollNotification = self.game.result.losers[i].name .. " owes " .. self.game.result.winners[i].name .. " " .. Utils:IntToCurrencyString(Utils.game.result.amountOwed)
+                    RollNotification = self.game.result.losers[i].name .. " owes " .. self.game.result.winners[i].name .. " " .. Utils:IntToCurrencyString(self.game.result.amountOwed)
                 elseif (self.game.house == true) then
-                    RollNotification = self.game.result.losers[i].name .. " owes " .. self.game.result.winners[i].name .. " " .. Utils:IntToCurrencyString(Utils.game.result.amountOwed) .. " plus " .. self:IntToCurrencyString(houseAmount) .. " to the guild"
+                    RollNotification = self.game.result.losers[i].name .. " owes " .. self.game.result.winners[i].name .. " " .. Utils:IntToCurrencyString(self.game.result.amountOwed) .. " plus " .. self:IntToCurrencyString(houseAmount) .. " to the guild"
                     self:updatePlayerStat("guild", houseAmount) -- Update guild's stats
                 end
 
