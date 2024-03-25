@@ -54,7 +54,8 @@ function CrossGambling:reportStats(full)
 		for k = 0,  #sortlistamount do
 			local sortsign = "won";
 			if(sortlistamount[k] < 0) then sortsign = "lost"; end
-			SendChatMessage(string.format("%d.  %s %s %d total", k+1, sortlistname[k], sortsign, math.abs(sortlistamount[k])), self.game.chatMethod);
+			--SendChatMessage(string.format("%d.  %s %s %d total", k+1, sortlistname[k], sortsign, math.abs(sortlistamount[k])), self.game.chatMethod);
+			SendChatMessage((k + 1) .. ". " .. sortlistname[k] .. " " .. sortsign .. " " .. Utils:IntToCurrencyString(math.abs(sortlistamount[k])) .. " total",self.game.chatMethod)
 		end
 
 		return
@@ -68,7 +69,7 @@ function CrossGambling:reportStats(full)
 	for i = 0, x1 do
 		local sortsign = "won";
 		if(sortlistamount[i] < 0) then sortsign = "lost"; end
-		SendChatMessage(string.format("%d.  %s %s %d total", i+1, sortlistname[i], sortsign, math.abs(sortlistamount[i])), self.game.chatMethod);
+		SendChatMessage((i + 1) .. ". " .. sortlistname[i] .. " " .. sortsign .. " " .. Utils:IntToCurrencyString(math.abs(sortlistamount[i])) .. " total",self.game.chatMethod)
 	end
 	
 	
@@ -77,8 +78,7 @@ function CrossGambling:reportStats(full)
 	for i = x2, n-1 do
 		local sortsign = "won";
 		if(sortlistamount[i] < 0) then sortsign = "lost"; end
-		SendChatMessage(string.format("%d.  %s %s %d total", i+1, sortlistname[i], sortsign, math.abs(sortlistamount[i])), self.game.chatMethod);
-		
+		SendChatMessage((i + 1) .. ". " .. sortlistname[i] .. " " .. sortsign .. " " .. Utils:IntToCurrencyString(math.abs(sortlistamount[i])) .. " total",self.game.chatMethod)
 	end
 	
 end

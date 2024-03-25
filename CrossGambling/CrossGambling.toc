@@ -9,9 +9,13 @@
 ## SavedVariables: CrossGambling
 Libs.xml
 
+ui/classic/MainUi.xml
+
 CrossGambling.lua
 core/GUI.lua
 core/ClassicGUI.lua
 core/Game.lua
 core/Stats.lua
 core/Events.lua
+core/Utils.lua
+core/Hooks.lua

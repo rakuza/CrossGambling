@@ -1,5 +1,6 @@
 CrossGambling = LibStub("AceAddon-3.0"):NewAddon("CrossGambling", "AceConsole-3.0", "AceEvent-3.0")
 local CrossGambling = LibStub("AceAddon-3.0"):GetAddon("CrossGambling")
+
 -- GLOBALS
 local gameStates = {
     "START",
@@ -464,7 +465,6 @@ function CrossGambling:CloseGame()
     if (self.game.result ~= nil) then
         if (#self.game.result.losers > 0 and #self.game.result.winners > 0) then
             local houseAmount = 0
-
             -- Check and make sure housecut is turned on.
             if (self.game.house == true) then
                 houseAmount = math.floor(self.game.result.amountOwed * (self.db.global.houseCut / 100))
@@ -475,9 +475,9 @@ function CrossGambling:CloseGame()
             for i = 1, #self.game.result.losers do
                 local RollNotification = ""
                 if (self.game.house == false) then
-                    RollNotification = self.game.result.losers[i].name .. " owes " .. self.game.result.winners[i].name .. " " .. add_commas(self.game.result.amountOwed) .. " silver!"
+                    RollNotification = self.game.result.losers[i].name .. " owes " .. self.game.result.winners[i].name .. " " .. Utils:IntToCurrencyString(Utils.game.result.amountOwed)
                 elseif (self.game.house == true) then
-                    RollNotification = self.game.result.losers[i].name .. " owes " .. self.game.result.winners[i].name .. " " .. add_commas(self.game.result.amountOwed) .. " silver!" .. " plus " .. add_commas(houseAmount) .. " to the guild"
+                    RollNotification = self.game.result.losers[i].name .. " owes " .. self.game.result.winners[i].name .. " " .. Utils:IntToCurrencyString(Utils.game.result.amountOwed) .. " plus " .. self:IntToCurrencyString(houseAmount) .. " to the guild"
                     self:updatePlayerStat("guild", houseAmount) -- Update guild's stats
                 end
 

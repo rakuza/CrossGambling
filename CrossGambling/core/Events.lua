@@ -15,7 +15,8 @@ CGCall["New_Game"] = function()
         self.game.state = "REGISTER"
         self:GameStart()
 		
-		local MessageBuilder = "Wager - " .. add_commas(self.db.global.wager) .. "s"
+		--local MessageBuilder = "Wager - " .. add_commas(self.db.global.wager) .. "s"
+		local MessageBuilder = "Maximum Wager - " .. Utils:IntToCurrencyString(self.db.global.wager)
 		
 		if(self.game.chatframeOption == true) then 
 			MessageBuilder = "Game Mode - " .. self.game.mode .. " - " .. MessageBuilder
@@ -27,7 +28,7 @@ CGCall["New_Game"] = function()
 		
 		if(self.game.chatframeOption == false and self.game.host == true) then 
 			self:SendMsg(format("CHAT_MSG:%s:%s:%s", self.game.PlayerName, self.game.PlayerClass, MessageBuilder))
-		elseif(self.game.chatMethod == "RAID") then
+		elseif(self.game.chatMethod == "RAID" and Utils:IsAbleToRaidWarn()) then
 			SendChatMessage(MessageBuilder, "RAID_WARNING")
 		else 
 			SendChatMessage(MessageBuilder, self.game.chatMethod )
