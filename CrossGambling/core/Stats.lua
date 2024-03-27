@@ -12,7 +12,7 @@ end
 
 function CrossGambling:reportStats(full)
     -- Post the stats to the chat channel
-    SendChatMessage("-- CrossGambling All Time Stats --", self.game.chatMethod)
+    SendChatMessage("-- GambaDen All Time Stats --", self.game.chatMethod)
 		SendChatMessage(string.format("The house has taken %s total.", (self.db.global.housestats)), self.game.chatMethod);
 	local sortlistname = {};
 	local sortlistamount = {};

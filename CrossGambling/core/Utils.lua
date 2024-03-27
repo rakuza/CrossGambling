@@ -7,7 +7,6 @@ function Utils:IsAbleToRaidWarn()
         for i = 1, numRaidMembers do
             local unit = "raid" .. i
             local raiderName,raiderRank = GetRaidRosterInfo(i)
-            print(name .. "," .. raiderName .. "," .. raiderRank)
             if(name == raiderName and raiderRank > 0) then
                 return true
             end
@@ -50,7 +49,7 @@ end
 --- Sends a gambling event message with emphasis
 --- @arg str_msg the message we want to raid alert or message
 function Utils:SendAlert(str_msg, Chat_Method)
-    if(Chat_Method == "RAID" and CrossGambling:IsAbleToRaidWarn()) then
+    if(Chat_Method == "RAID" and Utils:IsAbleToRaidWarn()) then
         SendChatMessage(str_msg, "RAID_WARNING")
     else 
         SendChatMessage(str_msg, Chat_Method)
