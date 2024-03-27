@@ -3,14 +3,14 @@ function CrossGambling:GameStart()
 		local RollNotification = "has started a roll!"
 		self:SendMsg(format("CHAT_MSG:%s:%s:%s", self.game.PlayerName, self.game.PlayerClass, RollNotification))
     else
-		SendChatMessage("CrossGambling: A new game has been started! Type 1 to join! (-1 to withdraw)" , self.game.chatMethod)	
+		SendChatMessage("GambaDen: A new game has been started! Type 1 to join! (-1 to withdraw)" , self.game.chatMethod)	
     end
 end
 
 function CrossGambling:RegisterGame(text, playerName)
     if (text == "1") then
 		if (self.game.realmFilter == true and self:CheckRealm(playerName) == 0) then
-			SendChatMessage("CrossGambling: You are not on (" .. GetRealmName() .. "). You are not eligible to join this game. The host can turn off the Realm Filter in the options." , self.game.chatMethod)
+			SendChatMessage("GambaDen: You are not on (" .. GetRealmName() .. "). You are not eligible to join this game. The host can turn off the Realm Filter in the options." , self.game.chatMethod)
 		else
 			self:SendMsg("ADD_PLAYER", playerName)		
 		end

@@ -12,7 +12,7 @@ function CrossGambling:ShowClassic(info)
     -- Show Inerface
 	if (CrossGamblingUI:IsVisible() ~= true) then
         CrossGamblingUI:Show()
-		LoadColor()
+		--LoadColor()
 	else 
 		CrossGamblingUI:Hide()
 	end
@@ -73,7 +73,7 @@ end)
 local MainFooter = CreateFrame("Button", nil, CrossGamblingUI, "InsetFrameTemplate")
 MainFooter:SetSize(CrossGamblingUI:GetSize(), 15)
 MainFooter:SetPoint("BOTTOMLEFT", CrossGamblingUI, 0, 0)
-MainFooter:SetText("CrossGambling - Lay@Mal'Ganis")
+MainFooter:SetText("GambaDen - Folfykins@Pennance(AU)")
 MainFooter:SetNormalFontObject("GameFontNormal")
 -- Options Menu
 local CGOptions = CreateFrame("Button", nil, MainHeader, "UIPanelButtonTemplate")
@@ -133,6 +133,7 @@ CGAcceptOnes:SetText("New Game")
 CGAcceptOnes:SetNormalFontObject("GameFontNormal")
 
 CGAcceptOnes:SetScript("OnClick", function()
+    
     CGAcceptOnes:Disable()  -- Disable the button during processing
 	self:SendMsg("SET_WAGER", CGEditBox:GetText())
 	CGEditBox:ClearFocus()
@@ -144,7 +145,7 @@ CGAcceptOnes:SetScript("OnClick", function()
         self:SendMsg("R_NewGame")
         self.game.host = true
         self:SendMsg("New_Game")
-
+        
         -- Sets same roll for everyone.
         self:SendMsg("SET_WAGER", CGEditBox:GetText())
 
@@ -155,7 +156,6 @@ CGAcceptOnes:SetScript("OnClick", function()
         self:SendMsg("Chat_Method", GCchatMethod:GetText())
 
         self:SendMsg("SET_HOUSE", CGGuildPercent:GetText())
-
         -- Starts a new game but only if they're the host.
     end
 
@@ -168,7 +168,7 @@ CGLastCall:SetPoint("TOPLEFT", CGAcceptOnes, "BOTTOMLEFT", -0, -3)
 CGLastCall:SetText("Last Call!")
 CGLastCall:SetNormalFontObject("GameFontNormal")
 CGLastCall:SetScript("OnClick", function()
-self:SendMsg("LastCall")
+    Hooks:click_LastCall(self.game.chatMethod)
 end)
 
 local CGStartRoll = CreateFrame("Button", nil, MainMenu, "UIPanelButtonTemplate")
@@ -308,6 +308,7 @@ CGTheme:SetScript("OnClick", function()
 end)
 
 -- Right Side Menu
+
 local CGRightMenu = CreateFrame("Frame", "CGRightMenu", CrossGamblingUI, "InsetFrameTemplate")
 CGRightMenu:SetPoint("TOPLEFT", CrossGamblingUI, "TOPRIGHT", 0, 0)
 CGRightMenu:SetSize(220, 150)
@@ -343,6 +344,7 @@ CGRightMenu:SetScript("OnMouseUp", function(self, button)
 end)
 
 -- Create the text field frame within the right side menu frame
+
 CGRightMenu.TextField = CreateFrame("ScrollingMessageFrame", nil, CGRightMenu)
 CGRightMenu.TextField:SetPoint("CENTER", CGRightMenu, 2, -0)
 CGRightMenu.TextField:SetSize(CGRightMenu:GetWidth()-8, -140)
@@ -357,7 +359,6 @@ CGRightMenu.TextField:SetScript("OnMouseWheel", function(self, delta)
         self:ScrollDown()
     end
 end)
-
 
 local function OnChatSubmit(CGChatBox)
     local message = CGChatBox:GetText()
@@ -411,6 +412,7 @@ CGChatToggle:SetScript("OnMouseDown", function()
 	end
 end)
 
+
 local valuescale = function(val,valStep)
 		 	self.db.global.scalevalue = val
     return floor(val/valStep)*valStep
@@ -422,7 +424,7 @@ local valuescale = function(val,valStep)
 	slider:SetSize(CrossGamblingUI:GetSize(), 21)
 	slider:SetPoint("BOTTOM", CrossGamblingUI, "BOTTOM", 0, -20)
     local editbox = CreateFrame("EditBox", "$parentEditBox", slider, "InputBoxTemplate")
-    slider:SetMinMaxValues(100, 250)
+    slider:SetMinMaxValues(50, 250)
 	self.db.global.scalevalue = self.db.global.scalevalue
 	slider:SetValue(self.db.global.scalevalue)
     slider:SetValueStep(valStep)
