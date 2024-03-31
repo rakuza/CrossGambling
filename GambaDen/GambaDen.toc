@@ -1,0 +1,21 @@
+## Interface: 100205
+## Title:|cffff7d0aGamba|r|cff009999Den
+## Author: Folfykins
+## Maintainer: Folfykins @ Pennance(AU)
+## Version: v2.0
+## DefaultState: Enabled
+## LoadOnDemand: 0
+## Notes: A fun way to lose gold. Or win it.
+## SavedVariables: GambaDen
+Libs.xml
+
+ui/classic/MainUi.xml
+
+GambaDen.lua
+core/GUI.lua
+core/ClassicGUI.lua
+core/Game.lua
+core/Stats.lua
+core/Events.lua
+core/Utils.lua
+core/Hooks.lua
