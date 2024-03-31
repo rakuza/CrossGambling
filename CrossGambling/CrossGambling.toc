@@ -1,8 +1,8 @@
 ## Interface: 100205
 ## Title:|cffff7d0aCrossGambling
-## Author: Azro
-## 1.3 Maintainer: Azro @ Area52
-## Version: v4
+## Author: Folfykins
+## Maintainer: Folfykins @ Pennance(AU)
+## Version: v5.0
 ## DefaultState: Enabled
 ## LoadOnDemand: 0
 ## Notes: A fun way to lose gold. Or win it.

@@ -15,7 +15,6 @@ CGCall["New_Game"] = function()
         self.game.state = "REGISTER"
         self:GameStart()
 		
-		--local MessageBuilder = "Wager - " .. add_commas(self.db.global.wager) .. "s"
 		local MessageBuilder = "Maximum Wager - " .. Utils:IntToCurrencyString(self.db.global.wager)
 		
 		if(self.game.chatframeOption == true) then 
@@ -28,10 +27,8 @@ CGCall["New_Game"] = function()
 		
 		if(self.game.chatframeOption == false and self.game.host == true) then 
 			self:SendMsg(format("CHAT_MSG:%s:%s:%s", self.game.PlayerName, self.game.PlayerClass, MessageBuilder))
-		elseif(self.game.chatMethod == "RAID" and Utils:IsAbleToRaidWarn()) then
-			SendChatMessage(MessageBuilder, "RAID_WARNING")
 		else 
-			SendChatMessage(MessageBuilder, self.game.chatMethod )
+			Utils:SendAlert(MessageBuilder, self.game.chatMethod )
 		end 
 		
         -- Disable Button for clients.
@@ -85,7 +82,7 @@ CGCall["START_ROLLS"] = function(maxAmount)
 	if(self.game.chatframeOption == false and self.game.host == true) then	
 		self:SendMsg(format("CHAT_MSG:%s:%s:%s", self.game.PlayerName, self.game.PlayerClass, RollNotification))
 	else
-		SendChatMessage("Entries have closed. Roll now!", self.game.chatMethod)
+		Utils:SendAlert("Entries have closed. Roll now!", self.game.chatMethod)
 		SendChatMessage(format("Type /roll %s", self.db.global.wager), self.game.chatMethod)
     end
   end
@@ -96,7 +93,7 @@ CGCall["LastCall"] = function()
 		local RollNotification = "Last Call!"
 		self:SendMsg(format("CHAT_MSG:%s:%s:%s", self.game.PlayerName, self.game.PlayerClass, RollNotification))
     elseif(self.game.host == true) then 
-		SendChatMessage("Last Call to Enter", self.game.chatMethod)
+		Utils:SendAlert("Last Call to Enter", self.game.chatMethod)
 	end
 end
 
